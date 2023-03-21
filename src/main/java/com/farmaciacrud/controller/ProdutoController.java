@@ -34,4 +34,8 @@ public class ProdutoController {
 				.map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
+	@GetMapping("/marca/{marca}")
+	public ResponseEntity<List<Produto>> getByMarca(@PathVariable String marca) {
+		return ResponseEntity.ok(produtoRepository.findAllByMarcaContainingIgnoreCase(marca));
+	}
 }

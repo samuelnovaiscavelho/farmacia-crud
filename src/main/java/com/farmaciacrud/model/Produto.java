@@ -20,7 +20,7 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "O atributo título é Obrigatório!")
+	@NotBlank(message = "O atributo marca é Obrigatório!")
 	@Size(min = 4, max = 100, message = "O atributo marca deve conter no mínimo 04 e no máximo 100 caracteres")
 	private String marca;
 	
