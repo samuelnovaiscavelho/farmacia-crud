@@ -2,14 +2,10 @@ package com.farmaciacrud.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
@@ -30,17 +26,24 @@ public class Produto {
 	@NotBlank(message = "O atributo Indicacao é Obrigatório!")
 	@Size(min = 5, max = 100, message = "O atributo Indicação deve conter no mínimo 05 e no máximo 100 caracteres")
 	private String indicacao;
-	
-	@NotBlank(message = "O atributo preço é Obrigatório!")
+
+
+	@NotNull
 	private Double preco;
-	
-	
+
+	@Past
+	@NotNull
 	@UpdateTimestamp
 	private LocalDate dataEmissao;
-	
-	@NotBlank(message = "O atributo Data de Validade é Obrigatório!")
-	@UpdateTimestamp
+
+	@Future
+	@NotNull
+    @UpdateTimestamp
 	private LocalDate dataValidade;
+
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Categoria categoria;
 
 	public Long getId() {
 		return id;
@@ -98,4 +101,11 @@ public class Produto {
 		this.dataValidade = dataValidade;
 	}
 
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 }

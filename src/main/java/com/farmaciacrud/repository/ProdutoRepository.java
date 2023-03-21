@@ -13,6 +13,4 @@ public interface ProdutoRepository  extends JpaRepository<Produto, Long>{
 
     List<Produto> findAllByMarcaContainingIgnoreCase(@Param("marca") String marca);
 
-   // public Optional <Produto> findByMarca(String marca);
-
 }
