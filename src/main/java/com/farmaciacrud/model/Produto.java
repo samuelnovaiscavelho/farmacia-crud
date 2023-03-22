@@ -33,12 +33,12 @@ public class Produto {
 
 	@Past
 	@NotNull
-	@UpdateTimestamp
+//	@UpdateTimestamp
 	private LocalDate dataEmissao;
 
 	@Future
 	@NotNull
-    @UpdateTimestamp
+ //   @UpdateTimestamp
 	private LocalDate dataValidade;
 
 	@ManyToOne
